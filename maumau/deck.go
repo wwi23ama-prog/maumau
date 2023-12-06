@@ -1,5 +1,7 @@
 package maumau
 
+import "math/rand"
+
 // Deck repräsentiert einen Kartenstapel.
 type Deck struct {
 	cards []Card
@@ -14,4 +16,23 @@ func NewDeck32() Deck {
 		}
 	}
 	return deck
+}
+
+// Shuffle mischt den Kartenstapel.
+func (d *Deck) Shuffle() {
+	rand.Shuffle(len(d.cards), func(i, j int) {
+		d.cards[i], d.cards[j] = d.cards[j], d.cards[i]
+	})
+
+	// Falls der Kartenstapel sich an weniger als 5 Positionen unterscheidet, nochmal mischen.
+	counter := 0
+	unshuffledeck := NewDeck32()
+	for i := range d.cards {
+		if d.cards[i] != unshuffledeck.cards[i] {
+			counter++
+		}
+	}
+	if counter < 5 {
+		d.Shuffle()
+	}
 }

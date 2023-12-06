@@ -49,5 +49,25 @@ func ExampleNewDeck32() {
 	// ♣Q
 	// ♣K
 	// ♣A
+}
 
+// ExampleDeckShuffle zeigt die Verwendung von Deck.Shuffle().
+func ExampleDeck_Shuffle() {
+	// Kartenstapel erzeugen
+	deck := NewDeck32()
+
+	// Kartenstapel mischen
+	deck.Shuffle()
+
+	// Prüfen, ob die Kartenstapel sich an wenigstens 5 Stellen unterscheiden.
+	counter := 0
+	for i := range deck.cards {
+		if deck.cards[i] != NewDeck32().cards[i] {
+			counter++
+		}
+	}
+	fmt.Println(counter >= 5)
+
+	// Output:
+	// true
 }
