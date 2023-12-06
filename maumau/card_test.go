@@ -18,15 +18,17 @@ func ExampleCard_String() {
 // ExampleCardPicture zeigt die Verwendung von Card.Picture().
 // Die Funktion erzeugt eine Karte und gibt sie als Unicode-Grafik aus.
 func ExampleCard_Picture() {
-	// Karte erzeugen: Pik 7
-	c := Card{suit: Spades, rank: Seven}
+	// Karten erzeugen: Pik 7, Kreuz König
+	c1 := Card{suit: Spades, rank: Seven}
+	c2 := Card{suit: Clubs, rank: King}
 
 	// Sonderfall: 10 (zwei Zeichen)
-	c2 := Card{suit: Spades, rank: Ten}
+	c3 := Card{suit: Spades, rank: Ten}
 
 	// Karten als Unicode-Grafik ausgeben
-	fmt.Println(c.Picture())
+	fmt.Println(c1.Picture())
 	fmt.Println(c2.Picture())
+	fmt.Println(c3.Picture())
 
 	// Output:
 	// ┌───────┐
@@ -34,6 +36,12 @@ func ExampleCard_Picture() {
 	// │       │
 	// │       │
 	// │     ♠7│
+	// └───────┘
+	// ┌───────┐
+	// │♣K     │
+	// │       │
+	// │       │
+	// │     ♣K│
 	// └───────┘
 	// ┌───────┐
 	// │♠10    │
